@@ -3,24 +3,46 @@
 import argparse
 
 # My solution that I understand
-def find_max_profit(prices):
-  buy_price = prices[0]
-  sell_price = 0
-  profit = -1000000
+# def find_max_profit(prices):
+#   buy_price = prices[0]
+#   sell_price = 0
+#   profit = -1000000
 
-  for i in range(len(prices)):
-    each_price = prices[i]
+#   for i in range(len(prices)):
+#     each_price = prices[i]
 
-    if each_price < buy_price:
-      buy_price = each_price
-      sell_price = 0
-    elif each_price > sell_price:
-      sell_price = each_price
-      profit = sell_price - buy_price
-  return profit
+#     if each_price < buy_price:
+#       buy_price = each_price
+#       sell_price = 0
+#     elif each_price > sell_price:
+#       sell_price = each_price
+#       profit = sell_price - buy_price
+#   return profit
 
 # Clunky solution to pass the test
 def find_max_profit(prices):
+  profit = -10
+  buy_price = 0
+  sell_price = 0
+
+  change_buy_index = True
+
+  for i in range( len(prices) - 1 ):
+    sell_price = prices[i+1]
+
+    if change_buy_index:
+      buy_price = prices[i]
+
+    if sell_price < buy_price:
+      change_buy_index = True
+      continue
+
+    else:
+      temp_profit = sell_price - buy_price
+      if temp_profit > profit:
+        profit = temp_profit
+        change_buy_index = False
+  return profit
 
 
 
