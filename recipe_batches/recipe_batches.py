@@ -3,7 +3,16 @@
 import math
 
 def recipe_batches(recipe, ingredients):
-  pass 
+  values = []
+  if len(recipe) != len(ingredients):
+    return 0
+
+  # diff_keys = [keys for keys in recipe if recipe[keys] <= (ingredients[keys])]
+  # return diff_keys
+  for keys in recipe:
+    if recipe[keys] <= ingredients[keys]:
+      values.append(ingredients[keys] // recipe[keys])
+  return min(values)
 
 
 if __name__ == '__main__':
